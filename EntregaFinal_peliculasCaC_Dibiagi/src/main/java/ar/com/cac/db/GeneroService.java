@@ -82,7 +82,7 @@ public class GeneroService {
 	
 	public void addGenero (Genero genero) throws SQLException,ClassNotFoundException  {
 		
-		String sql = "insert into peliculas (nombreGenero)"
+		String sql = "insert into genero (nombreGenero)"
 				+ "VALUES(?)";
 		
 		Connection con = conexion.getConnection();
@@ -99,8 +99,8 @@ public class GeneroService {
 
 	public void updateGenero (Genero genero) throws SQLException,ClassNotFoundException  {
 		
-		String sql = "update genero set nombreGenero =?"
-				+ "where idGenero =?";
+		String sql = "UPDATE genero SET nombreGenero = ?"
+				+ "WHERE idGenero = ?";
 		
 		Connection con = conexion.getConnection();
 		

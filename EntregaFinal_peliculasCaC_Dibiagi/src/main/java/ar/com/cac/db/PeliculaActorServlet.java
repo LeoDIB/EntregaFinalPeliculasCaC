@@ -29,10 +29,13 @@ public class PeliculaActorServlet extends HttpServlet {
         String pathInfo = req.getPathInfo();
         try {
             if (pathInfo == null || pathInfo.equals("/")) {
-                resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid path");
+            	List<PeliculaActor> peliculas = peliculaActorService.getAllPeliculaActor();
+				String json = objectMapper.writeValueAsString(peliculas);
+				resp.setContentType("application/json");
+				resp.getWriter().write(json);
             } else {
                 String[] pathParts = pathInfo.split("/");
-                if (pathParts.length == 2) {
+                if (pathParts.length == 3 && pathParts[2].equals("reparto")) {
                 	
                     int idPelicula = Integer.parseInt(pathParts[1]);
                     

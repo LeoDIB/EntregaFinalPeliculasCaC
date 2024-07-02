@@ -16,6 +16,37 @@ private Conexion conexion;
 		this.conexion = new Conexion();
 		
 	}
+	
+public List<PeliculaGenero> getAllPeliculaGenero() throws SQLException,ClassNotFoundException {
+		
+		Connection con = conexion.getConnection();
+						
+		String sql = "select * from peliculaGenero";
+		
+		PreparedStatement ps = con.prepareStatement(sql);
+		
+		ResultSet rs = ps.executeQuery();
+		
+		List<PeliculaGenero> peliculaGeneros = new ArrayList<>();
+		
+		while(rs.next()) 
+		{
+			
+			PeliculaGenero peliculaGenero = new PeliculaGenero(
+					rs.getInt("idGeneroPelicula"),
+					rs.getInt("idPelicula"),
+					rs.getInt("idGenero")					);
+			
+			peliculaGeneros.add(peliculaGenero);
+		}
+		
+		rs.close();
+		ps.close();
+		con.close();
+		return peliculaGeneros;
+	}
+	
+	
 	/*Método para obtener los Generos de una pelicula en particular mediante el idPelicula*/
 public List<Genero> getGenerosByIdPelicula(int idPelicula) throws SQLException,ClassNotFoundException {
 		
@@ -99,5 +130,37 @@ public void addPeliculaGenero (PeliculaGenero peliculaGenero) throws SQLExceptio
 	con.close();
 }
 
+public void updatePeliculaGenero (PeliculaGenero peliculaGenero) throws SQLException,ClassNotFoundException  {
+	
+	String sql = "UPDATE peliculaGenero SET idPelicula = ?, idGenero = ?"
+			+ "WHERE idPeliculaActor = ?";
+	
+	Connection con = conexion.getConnection();
+	
+	PreparedStatement ps = con.prepareStatement(sql);
+	
+	ps.setInt(1, peliculaGenero.getIdPelicula());
+	ps.setInt(2, peliculaGenero.getIdGenero());
+	ps.setInt(3, peliculaGenero.getIdPeliculaGenero());
+
+	ps.executeUpdate();
+	ps.close();
+	con.close();
+}
+
+public void deletePeliculaGenero(int idPeliculaGenero) throws SQLException, ClassNotFoundException{
+	
+	Connection con = conexion.getConnection();
+	
+	String sql = "delete * from peliculaGenero where idGeneroPelicula=?";
+	
+	PreparedStatement ps = con.prepareStatement(sql);
+	
+	ps.setInt(1, idPeliculaGenero);
+	
+	ps.executeUpdate();
+	ps.close();
+	con.close();
+}
 	
 }

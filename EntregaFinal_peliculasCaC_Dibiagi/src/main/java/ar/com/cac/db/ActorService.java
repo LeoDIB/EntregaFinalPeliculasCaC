@@ -86,7 +86,7 @@ public class ActorService {
 	
 	public void addActor (Actor actor) throws SQLException,ClassNotFoundException  {
 		
-		String sql = "insert into peliculas (nombreActor,generoActor,edadActor,nominacionesOscar)"
+		String sql = "insert into actor (nombreActor,generoActor,edadActor,nominacionesOscar)"
 				+ "VALUES(?,?,?,?)";
 		
 		Connection con = conexion.getConnection();
@@ -105,8 +105,8 @@ public class ActorService {
 
 	public void updateActor (Actor actor) throws SQLException,ClassNotFoundException  {
 		
-		String sql = "update actor set nombreActor =?, generoActor =?, edadActor =?, nominacionesOscar =?"
-				+ "where idActor =?";
+		String sql = "UPDATE actor SET nombreActor = ?, generoActor = ?, edadActor = ?, nominacionesOscar = ?"
+				+ "WHERE idActor = ?";
 		
 		Connection con = conexion.getConnection();
 		

@@ -87,7 +87,7 @@ public class DirectorService {
 	
 	public void addDirector (Director director) throws SQLException,ClassNotFoundException  {
 		
-		String sql = "insert into peliculas (nombreDirector,generoDirector,edadDirector,nominacionesOscar)"
+		String sql = "insert into director (nombreDirector,generoDirector,edadDirector,nominacionesOscar)"
 				+ "VALUES(?,?,?,?)";
 		
 		Connection con = conexion.getConnection();
@@ -106,8 +106,8 @@ public class DirectorService {
 
 	public void updateDirector (Director director) throws SQLException,ClassNotFoundException  {
 		
-		String sql = "update director set nombreDirector =?, generoDirector =?, edadDirector =?, nominacionesOscar =?"
-				+ "where idActor =?";
+		String sql = "UPDATE director SET nombreDirector = ?, generoDirector = ?, edadDirector = ?, nominacionesOscar = ?"
+				+ "WHERE idActor = ?";
 		
 		Connection con = conexion.getConnection();
 		
