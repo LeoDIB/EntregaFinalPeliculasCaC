@@ -78,4 +78,39 @@ public class ActorServlet extends HttpServlet{
 			}
 		}
 		
+		protected void doPut(HttpServletRequest req, HttpServletResponse resp)throws ServletException, IOException{
+			
+			try {
+			Actor actor = objectMapper.readValue(req.getReader(), Actor.class);
+			actorService.updateActor(actor);
+			resp.setStatus(HttpServletResponse.SC_OK);
+			}
+			catch(SQLException|ClassNotFoundException e) {
+				
+				resp.sendError(HttpServletResponse.SC_NOT_FOUND);
+			}
+		}
+
+	@Override
+	protected void doDelete(HttpServletRequest req, HttpServletResponse resp)throws ServletException, IOException{
+		
+		String pathInfo = req.getPathInfo();
+		try {
+				
+			if(pathInfo!=null&&pathInfo.split("/").length>1) 
+			{		
+				int id= Integer.parseInt(pathInfo.split("/")[1]);
+				actorService.deleteActor(id);
+				resp.setStatus(HttpServletResponse.SC_OK);
+			}
+			else 
+			{
+				resp.sendError(HttpServletResponse.SC_BAD_REQUEST);
+			}
+		} catch(SQLException|ClassNotFoundException e) {
+			
+			resp.sendError(HttpServletResponse.SC_NOT_FOUND);
+		}
+	}
+		
 }

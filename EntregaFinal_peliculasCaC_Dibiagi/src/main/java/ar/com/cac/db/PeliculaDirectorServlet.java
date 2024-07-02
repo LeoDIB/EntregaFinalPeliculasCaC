@@ -84,4 +84,38 @@ protected void doPost(HttpServletRequest req, HttpServletResponse resp)throws Se
 			resp.sendError(HttpServletResponse.SC_NOT_FOUND);
 		}
 	}
+protected void doPut(HttpServletRequest req, HttpServletResponse resp)throws ServletException, IOException{
+	
+	try {
+	PeliculaDirector peliculaDirector = objectMapper.readValue(req.getReader(), PeliculaDirector.class);
+	peliculaDirectorService.updatePeliculaDirector(peliculaDirector);
+	resp.setStatus(HttpServletResponse.SC_OK);
+	}
+	catch(SQLException|ClassNotFoundException e) {
+		
+		resp.sendError(HttpServletResponse.SC_NOT_FOUND);
+	}
+}
+
+@Override
+protected void doDelete(HttpServletRequest req, HttpServletResponse resp)throws ServletException, IOException{
+
+String pathInfo = req.getPathInfo();
+try {
+		
+	if(pathInfo!=null&&pathInfo.split("/").length>1) 
+	{		
+		int id= Integer.parseInt(pathInfo.split("/")[1]);
+		peliculaDirectorService.deletePeliculaDirector(id);
+		resp.setStatus(HttpServletResponse.SC_OK);
+	}
+	else 
+	{
+		resp.sendError(HttpServletResponse.SC_BAD_REQUEST);
+	}
+} catch(SQLException|ClassNotFoundException e) {
+	
+	resp.sendError(HttpServletResponse.SC_NOT_FOUND);
+}
+}
 }

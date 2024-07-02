@@ -77,4 +77,39 @@ public class DirectorServlet extends HttpServlet{
 				resp.sendError(HttpServletResponse.SC_NOT_FOUND);
 			}
 		}
+		
+		protected void doPut(HttpServletRequest req, HttpServletResponse resp)throws ServletException, IOException{
+			
+			try {
+			Director director = objectMapper.readValue(req.getReader(), Director.class);
+			directorService.updateDirector(director);
+			resp.setStatus(HttpServletResponse.SC_OK);
+			}
+			catch(SQLException|ClassNotFoundException e) {
+				
+				resp.sendError(HttpServletResponse.SC_NOT_FOUND);
+			}
+		}
+
+	@Override
+	protected void doDelete(HttpServletRequest req, HttpServletResponse resp)throws ServletException, IOException{
+		
+		String pathInfo = req.getPathInfo();
+		try {
+				
+			if(pathInfo!=null&&pathInfo.split("/").length>1) 
+			{		
+				int id= Integer.parseInt(pathInfo.split("/")[1]);
+				directorService.deleteDirector(id);
+				resp.setStatus(HttpServletResponse.SC_OK);
+			}
+			else 
+			{
+				resp.sendError(HttpServletResponse.SC_BAD_REQUEST);
+			}
+		} catch(SQLException|ClassNotFoundException e) {
+			
+			resp.sendError(HttpServletResponse.SC_NOT_FOUND);
+		}
+	}
 }
