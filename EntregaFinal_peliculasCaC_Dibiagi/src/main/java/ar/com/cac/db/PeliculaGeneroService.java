@@ -132,8 +132,8 @@ public void addPeliculaGenero (PeliculaGenero peliculaGenero) throws SQLExceptio
 
 public void updatePeliculaGenero (PeliculaGenero peliculaGenero) throws SQLException,ClassNotFoundException  {
 	
-	String sql = "UPDATE peliculaGenero SET idPelicula = ?, idGenero = ?"
-			+ "WHERE idPeliculaActor = ?";
+	String sql = "UPDATE peliculaGenero SET idPelicula = ?, idGenero = ? "
+			+ "WHERE idgeneroPelicula = ?";
 	
 	Connection con = conexion.getConnection();
 	
@@ -152,7 +152,7 @@ public void deletePeliculaGenero(int idPeliculaGenero) throws SQLException, Clas
 	
 	Connection con = conexion.getConnection();
 	
-	String sql = "delete * from peliculaGenero where idGeneroPelicula=?";
+	String sql = "DELETE FROM peliculaGenero where idgeneroPelicula = ?";
 	
 	PreparedStatement ps = con.prepareStatement(sql);
 	

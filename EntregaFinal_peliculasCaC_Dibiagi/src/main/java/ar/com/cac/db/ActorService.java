@@ -105,7 +105,7 @@ public class ActorService {
 
 	public void updateActor (Actor actor) throws SQLException,ClassNotFoundException  {
 		
-		String sql = "UPDATE actor SET nombreActor = ?, generoActor = ?, edadActor = ?, nominacionesOscar = ?"
+		String sql = "UPDATE actor SET nombreActor = ?, generoActor = ?, edadActor = ?, nominacionesOscar = ? "
 				+ "WHERE idActor = ?";
 		
 		Connection con = conexion.getConnection();

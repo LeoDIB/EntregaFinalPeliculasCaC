@@ -106,7 +106,7 @@ public class DirectorService {
 
 	public void updateDirector (Director director) throws SQLException,ClassNotFoundException  {
 		
-		String sql = "UPDATE director SET nombreDirector = ?, generoDirector = ?, edadDirector = ?, nominacionesOscar = ?"
+		String sql = "UPDATE director SET nombreDirector = ?, generoDirector = ?, edadDirector = ?, nominacionesOscar = ? "
 				+ "WHERE idActor = ?";
 		
 		Connection con = conexion.getConnection();

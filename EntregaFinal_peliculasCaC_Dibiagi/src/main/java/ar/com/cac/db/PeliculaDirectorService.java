@@ -134,7 +134,7 @@ public void addPeliculaDirector (PeliculaDirector peliculaDirector) throws SQLEx
 
 public void updatePeliculaDirector (PeliculaDirector peliculaDirector) throws SQLException,ClassNotFoundException  {
 	
-	String sql = "UPDATE peliculaDirector SET idPelicula = ?, idDirector = ?"
+	String sql = "UPDATE peliculaDirector SET idPelicula = ?, idDirector = ? "
 			+ "WHERE idPeliculaDirector = ?";
 	
 	Connection con = conexion.getConnection();

@@ -135,7 +135,7 @@ public void addPeliculaActor (PeliculaActor peliculaActor) throws SQLException,C
 
 public void updatePeliculaReparto (PeliculaActor peliculaActor) throws SQLException,ClassNotFoundException  {
 	
-	String sql = "UPDATE peliculaReparto SET idPelicula = ?, idActor = ?"
+	String sql = "UPDATE peliculaReparto SET idPelicula = ?, idActor = ? "
 			+ "WHERE idPeliculaReparto = ?";
 	Connection con = conexion.getConnection();
 	

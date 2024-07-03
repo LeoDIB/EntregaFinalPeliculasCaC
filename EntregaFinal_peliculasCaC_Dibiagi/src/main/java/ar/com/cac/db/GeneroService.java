@@ -99,7 +99,7 @@ public class GeneroService {
 
 	public void updateGenero (Genero genero) throws SQLException,ClassNotFoundException  {
 		
-		String sql = "UPDATE genero SET nombreGenero = ?"
+		String sql = "UPDATE genero SET nombreGenero = ? "
 				+ "WHERE idGenero = ?";
 		
 		Connection con = conexion.getConnection();
